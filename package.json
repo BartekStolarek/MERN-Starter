@@ -1,0 +1,30 @@
+{
+  "name": "mern-starter",
+  "version": "1.0.0",
+  "description": "MERN Stack Starter App (Mongo, Express, React, Node)",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BartekStolarek/MERN-Starter.git"
+  },
+  "author": "Bartek Stolarek",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BartekStolarek/MERN-Starter/issues"
+  },
+  "homepage": "https://github.com/BartekStolarek/MERN-Starter#readme",
+  "dependencies": {
+    "@hapi/joi": "^17.1.1",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.11.17"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
