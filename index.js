@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 
 // Routes
 const authRoute = require('./routes/auth');
+const profileRoute = require('./routes/profile');
 
 dotenv.config();
 
@@ -28,6 +29,7 @@ app.use(express.json());
 
 // Route Middlewares
 app.use('/api/account', authRoute);
+app.use('/api/profile', profileRoute);
 
 app.listen(PORT, () => {
     console.log(`App is running on port ${PORT}`);
