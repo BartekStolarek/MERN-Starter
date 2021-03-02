@@ -1,6 +1,7 @@
+import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 
-const validateToken = (req, res, next) => {
+const validateToken = (req: Request, res: Response, next: NextFunction) => {
   const token = req.header('auth-token');
 
   if (!token) {
@@ -10,8 +11,7 @@ const validateToken = (req, res, next) => {
   }
 
   try {
-    const verified = jwt.verify(token, process.env.TOKEN_SECRET);
-    req.user = verified;
+    jwt.verify(token, process.env.TOKEN_SECRET);
     next();
   } catch (error) {
     res.status(400).send({
