@@ -4,7 +4,9 @@ module.exports = function (req, res, next) {
     const token = req.header('auth-token');
     
     if (!token) {
-        return res.status(401).send('Access denied');
+        return res.status(401).send({
+            message: 'Access denied'
+        });
     }
 
     try {
@@ -12,6 +14,8 @@ module.exports = function (req, res, next) {
         req.user = verified;
         next();
     } catch (error) {
-        res.status(400).send('Invalid Authentication Token');
+        res.status(400).send({
+            message: 'Invalid Authentication Token'
+        });
     }
 }

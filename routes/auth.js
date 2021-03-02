@@ -2,18 +2,19 @@ const router = require('express').Router();
 const User = require('../model/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { registerValidation, loginValidation } = require('../validation');
-const { verify } = require('../routes/verifyToken');
+const { signupValidation, loginValidation } = require('../validation/validation');
 
-router.post('/register', async (req, res) => {
-    // Validate data
-    const validation = registerValidation(req.body);
+router.post('/signup', async (req, res) => {
+    // Validate signup data
+    const validation = signupValidation(req.body);
 
     if (validation && validation.error) {
-        return res.status(400).send(validation.error.details[0].message);
+        return res.status(400).send({
+            message: validation.error.details[0].message
+        });
     }
 
-    // Check if user is already in the database
+    // Verify if user is already in the database
     const emailExist = await User.findOne({
         email: req.body.email
     });
@@ -26,7 +27,7 @@ router.post('/register', async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
-    // Save user in the DB
+    // Save new user in the Database
     const user = new User({
         name: req.body.name,
         email: req.body.email,
@@ -35,41 +36,52 @@ router.post('/register', async (req, res) => {
 
     try {
         const savedUser = await user.save();
-        res.send({
-            user: user._id
-        });
+        res.status(200).send({
+            message: 'New user was successfully created.'
+        })
+        // res.send({
+        //     user: user._id
+        // });
     } catch (error) {
-        res.status(400).send(error);
+        res.status(400).send({
+            message: 'An error occurred while trying to create a new user.'
+        });
     }
 });
 
 router.post('/login', async (req, res) => {
-    // Validate data
+    // Validate login data
     const validation = loginValidation(req.body);
 
     if (validation && validation.error) {
-        return res.status(400).send(validation.error.details[0].message);
+        return res.status(400).send({
+            message: validation.error.details[0].message
+        });
     }
 
-    // Check if email exists
+    // Verify if email exists
     const user = await User.findOne({
         email: req.body.email
     });
 
     if (!user) {
-        return res.status(400).send('Email or password is wrong');
+        return res.status(400).send({
+            message: 'Email or password is wrong'
+        });
     }
 
     // Validate password
     const validPassword = await bcrypt.compare(req.body.password, user.password);
 
     if (!validPassword) {
-        return res.status(400).send('Email or password is wrong');
+        return res.status(400).send({
+            message: 'Email or password is wrong'
+        })
     }
 
-    // Create and assing a token
+    // Create and assing a JWT token
     const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
-    res.header('auth-token', token).send(token);
+    res.header('auth-token', token).status(200).send({});
 });
 
 module.exports = router;
