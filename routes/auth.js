@@ -38,10 +38,7 @@ router.post('/signup', async (req, res) => {
         const savedUser = await user.save();
         res.status(200).send({
             message: 'New user was successfully created.'
-        })
-        // res.send({
-        //     user: user._id
-        // });
+        });
     } catch (error) {
         res.status(400).send({
             message: 'An error occurred while trying to create a new user.'
@@ -76,7 +73,7 @@ router.post('/login', async (req, res) => {
     if (!validPassword) {
         return res.status(400).send({
             message: 'Email or password is wrong'
-        })
+        });
     }
 
     // Create and assing a JWT token
