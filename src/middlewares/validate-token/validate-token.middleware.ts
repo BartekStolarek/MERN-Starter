@@ -11,7 +11,9 @@ const validateToken = (req: Request, res: Response, next: NextFunction) => {
   }
 
   try {
-    jwt.verify(token, process.env.TOKEN_SECRET);
+    const decodedToken: any = jwt.verify(token, process.env.TOKEN_SECRET);
+    const userId: string = decodedToken._id;
+    res.locals.userId = userId;
     next();
   } catch (error) {
     res.status(400).send({
