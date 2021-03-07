@@ -1,9 +1,25 @@
 import { Request, Response, NextFunction } from 'express';
 
-const getProfile = (req: Request, res: Response, next: NextFunction) => {
-  res.status(200).send({
-    message: 'Test profile data'
-  });
+import { User } from '../../models/user.model';
+
+const getProfile = async (req: Request, res: Response, next: NextFunction) => {
+  // Get userId from middleware and respond with user data
+  try {
+    const userId: string = res.locals.userId;
+    const user = await User.findById(userId);
+
+    return res.status(200).send({
+      user: {
+        name: user.name,
+        email: user.email,
+        signupDate: user.signupDate
+      }
+    });
+  } catch (error) {
+    return res.status(500).send({
+      message: 'An error occurred during retrieving user data.'
+    });
+  }
 };
 
 export { getProfile };
