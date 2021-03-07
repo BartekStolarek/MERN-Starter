@@ -4,7 +4,7 @@ export interface IUser extends Document {
   name: string;
   email: string;
   password: string;
-  date: Date;
+  signupDate: Date;
 }
 
 const userSchema = new Schema({
@@ -26,7 +26,7 @@ const userSchema = new Schema({
     max: 1024,
     min: 6
   },
-  date: {
+  signupDate: {
     type: Date,
     default: Date.now
   }
