@@ -21,7 +21,7 @@ const signup = async (req: Request, res: Response, next: NextFunction) => {
 
   if (emailExist) {
     return res.status(400).send({
-      message: 'User with this email already exists'
+      message: 'User with this email already exists.'
     });
   }
 

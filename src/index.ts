@@ -5,10 +5,8 @@ import { router } from './routes/router';
 
 // Initialize an app
 const app = express();
-
-dotenv.config();
-
 const PORT = 3002;
+dotenv.config();
 
 // Database connection
 mongoose.connect(

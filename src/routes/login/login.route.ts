@@ -22,7 +22,7 @@ const login = async (req: Request, res: Response, next: NextFunction) => {
 
   if (!user) {
     return res.status(400).send({
-      message: 'Email or password is wrong'
+      message: 'Email or password is wrong.'
     });
   }
 
@@ -31,7 +31,7 @@ const login = async (req: Request, res: Response, next: NextFunction) => {
 
   if (!validPassword) {
     return res.status(400).send({
-      message: 'Email or password is wrong'
+      message: 'Email or password is wrong.'
     });
   }
 
