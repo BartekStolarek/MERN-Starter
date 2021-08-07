@@ -1,6 +1,6 @@
 import Joi from 'joi';
 
-// Register validation
+// Signup validation
 const signupValidation = data => {
   const schema = Joi.object({
     name: Joi.string().min(6).required(),

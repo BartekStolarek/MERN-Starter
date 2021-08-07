@@ -8,7 +8,9 @@ const app = express();
 dotenv.config();
 
 // Database connection for specified environment
-if (process.env.ENVIRONMENT === 'production') {
+if (process.env.ENVIRONMENT === 'test') {
+  console.log(`Using ${process.env.ENVIRONMENT} environment. Database connection will be automatically handled there.`);
+} else {
   mongoose.connect(
     process.env.DB_CONNECT,
     {
@@ -16,11 +18,9 @@ if (process.env.ENVIRONMENT === 'production') {
       useUnifiedTopology: true
     },
     () => {
-      console.log(`Connected to the ${process.env.ENVIRONMENT} database`);
+      console.log(`Connected to the ${process.env.ENVIRONMENT} database.`);
     }
   );
-} else {
-  console.log(`Using environment ${process.env.ENVIRONMENT}. Database connection will be handled there.`);
 }
 
 // Middlewares
