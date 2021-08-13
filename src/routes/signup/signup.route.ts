@@ -9,7 +9,7 @@ const signup = async (req: Request, res: Response, next: NextFunction) => {
   const validation = signupValidation(req.body);
 
   if (validation && validation.error) {
-    return res.status(400).send({
+    return res.status(422).send({
       message: validation.error.details[0].message
     });
   }
