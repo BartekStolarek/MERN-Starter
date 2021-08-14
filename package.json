@@ -5,8 +5,8 @@
   "main": "app.js",
   "scripts": {
     "build": "tsc",
-    "start": "npm run build && ts-node-dev src/app.ts",
-    "test": "jest ./test"
+    "start": "npm run build && ts-node-dev src/server.ts",
+    "test": "jest ./test/router.spec.ts"
   },
   "repository": {
     "type": "git",

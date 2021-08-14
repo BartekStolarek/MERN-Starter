@@ -3,6 +3,6 @@ module.exports = {
   testEnvironment: 'node',
   verbose: true,
   setupFiles: [
-    '<rootDir>/test/test-utils/set-environment.ts'
+    '<rootDir>/test/test-util/set-environment.ts'
   ]
 };

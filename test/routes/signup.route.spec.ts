@@ -1,20 +1,8 @@
 import request from 'supertest';
-import { dbConnect, dbClose, dbClear } from '../test-utils/db-handler';
+import testUser from '../test-util/test-user.json';
 import { app } from '../../src/app';
 
-beforeAll(async () => {
-  await dbConnect();
-});
-
-afterEach(async () => {
-  await dbClear();
-});
-
-afterAll(async () => {
-  await dbClose();
-});
-
-describe('/api/account/signup', () => {
+const signupTests = () => {
   it('should respond with Status 422 when no data provided', (done) => {
     request(app)
       .post('/api/account/signup')
@@ -71,12 +59,21 @@ describe('/api/account/signup', () => {
   it('should register a user with valid signup data', (done) => {
     request(app)
       .post('/api/account/signup')
-      .send({
-        name: 'Test User',
-        email: 'test@user.com',
-        password: 'test1234'
-      })
+      .send(testUser)
       .expect(200)
       .end(done);
   });
-});
+
+  it('should throw an error for user with duplicated email', (done) => {
+    request(app)
+      .post('/api/account/signup')
+      .send(testUser)
+      .expect(422)
+      .expect({
+        message: 'User with this email already exists.'
+      })
+      .end(done);
+  });
+};
+
+export { signupTests };

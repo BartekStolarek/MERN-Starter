@@ -5,7 +5,7 @@ import { router } from './routes/router';
 import { errorHandlerMiddleware } from './middlewares/error/error.middleware';
 
 // Initialize an app
-const PORT: number = 3002;
+// const PORT: number = 3002;
 const app = express();
 dotenv.config();
 
@@ -37,9 +37,9 @@ app.use('/api', router);
 // Middlewares
 app.use(errorHandlerMiddleware);
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`App is running on port ${PORT}`);
-});
+// // Start server
+// app.listen(PORT, () => {
+//   console.log(`App is running on port ${PORT}`);
+// });
 
 export { app };
