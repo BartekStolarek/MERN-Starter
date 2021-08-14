@@ -16,9 +16,7 @@ const getProfile = async (req: Request, res: Response, next: NextFunction) => {
       }
     });
   } catch (error) {
-    return res.status(500).send({
-      message: 'An error occurred during retrieving user data.'
-    });
+    next(error);
   }
 };
 

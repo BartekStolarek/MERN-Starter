@@ -2,10 +2,10 @@
   "name": "mern-starter",
   "version": "1.0.0",
   "description": "MERN Stack Starter App (Mongo, Express, React, Node)",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
     "build": "tsc",
-    "start": "npm run build && ts-node-dev src/server.ts",
+    "start": "npm run build && ts-node-dev src/app.ts",
     "test": "jest ./test"
   },
   "repository": {
