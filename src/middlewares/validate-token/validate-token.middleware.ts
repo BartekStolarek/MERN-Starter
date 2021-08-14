@@ -1,13 +1,12 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
+import { CustomError } from '../../util/error/custom-error.class';
 
 const validateToken = (req: Request, res: Response, next: NextFunction) => {
   const token = req.header('auth-token');
 
   if (!token) {
-    return res.status(401).send({
-      message: 'Access denied'
-    });
+    throw new CustomError(401, 'Unauthorized');
   }
 
   try {
@@ -16,9 +15,7 @@ const validateToken = (req: Request, res: Response, next: NextFunction) => {
     res.locals.userId = userId;
     next();
   } catch (error) {
-    res.status(400).send({
-      message: 'Invalid Authentication Token'
-    });
+    throw new CustomError(401, 'Unauthorized');
   }
 };
 
