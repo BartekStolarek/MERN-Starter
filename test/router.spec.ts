@@ -1,6 +1,7 @@
 import { dbConnect, dbClose, dbClear } from './test-util/db-handler';
-import { loginTests } from './routes/login.route.spec';
+import { loginTests, authToken } from './routes/login.route.spec';
 import { signupTests } from './routes/signup.route.spec';
+import { profileTests } from './routes/profile.route.spec';
 
 beforeAll(async () => {
   await dbConnect();
@@ -14,3 +15,4 @@ afterAll(async (done) => {
 
 describe('/api/account/signup', signupTests);
 describe('/api/account/login', loginTests);
+describe('/api/profile', profileTests);
