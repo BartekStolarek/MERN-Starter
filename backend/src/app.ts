@@ -1,13 +1,18 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors';
 import mongoose from 'mongoose';
 import { router } from './routes/router';
 import { errorHandlerMiddleware } from './middlewares/error/error.middleware';
 
 // Initialize an app
-// const PORT: number = 3002;
 const app = express();
 dotenv.config();
+
+// Configure CORS
+const corsOptions: object = {
+  exposedHeaders: 'auth-token'
+};
 
 // Database connection for specified environment
 if (process.env.ENVIRONMENT === 'test') {
@@ -30,16 +35,12 @@ if (process.env.ENVIRONMENT === 'test') {
   );
 }
 
-// Set up router
+// Set up router with CORS
 app.use(express.json());
+app.use(cors(corsOptions));
 app.use('/api', router);
 
 // Middlewares
 app.use(errorHandlerMiddleware);
-
-// // Start server
-// app.listen(PORT, () => {
-//   console.log(`App is running on port ${PORT}`);
-// });
 
 export { app };
