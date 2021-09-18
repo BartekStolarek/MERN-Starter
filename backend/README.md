@@ -12,11 +12,13 @@ npm install
 ```
 This will install all required packages defined in `package.json` file.
 
-3. Set up the database - see paragraph below how to set up the database.
+3. In the app root folder, create an `.env` file with `ENVIRONMENT`, `DB_CONNECT` and `TOKEN_SECRET` variables. You can use `.env.template` file as a reference.
 
-4. Open `.env` file and paste link to your MongoDB and your token secret (this can be a random string).
+4. Run `npm start`
 
-5. Run `npm start`
+> Note: If you are running the MERN application using `docker-compose`, the `.env` file will be automatically created as a copy of the `.env.template` file, which default values are configured to work correctly together.
+
+> Note: if you are not running the MERN application using `docker-compose`, as described in the [root folder](../README), make sure you have MongoDB running locally on as a web instance. Example configuration of cloud MongoDB can be found in the paragraph below.
 
 ## How to set up your MongoDB
 You can choose from various options - from your local DB to cloud one. Here is a short instruction of creating a free cloud cluster:

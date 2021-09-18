@@ -15,5 +15,7 @@ This will install all required packages defined in `package.json` file.
 
 3. Run `npm start`
 
+> Note: If you are running the MERN application using `docker-compose`, the `.env` file will be automatically created as a copy of the `.env.template` file, which default values are configured to work correctly together.
+
 ## How to run tests
 `npm test` command would run tests written in Jest and react-testing-library.
