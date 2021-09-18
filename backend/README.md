@@ -1,7 +1,10 @@
-# MERN-Starter
-MERN Stack Starter App (Mongo, Express, React, Node)
+# MERN-Backend
+Backend for MERN Stack Starter App (Mongo, Express, React, Node)
 
-## How to set up the project
+## Want to run the whole project (Backend + Frontend + MongoDB)?
+Navigate to an upper folder or follow [this link](../README).
+
+## How to run the Backend application
 1. Make sure you have NodeJS with npm installed on your machine. If not - you can download it here: https://nodejs.org/en/
 2. Clone the repository, navigate to it in the terminal and run the following command: `
 ```
