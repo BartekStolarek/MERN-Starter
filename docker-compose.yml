@@ -1,0 +1,25 @@
+version: "1"
+services:
+    frontend-app:
+        container_name: frontend-app
+        image: mern/frontend-app
+        restart: always
+        build: ./frontend
+        ports:
+          - "3000:3000"
+    backend-app:
+        container_name: backend-app
+        image: mern/backend-app
+        restart: always
+        build: ./backend
+        ports:
+          - "3002:3002"
+        links:
+          - mongo
+    mongo:
+        container_name: mern-mongo
+        image: mongo
+        volumes:
+          - ./data:/data/db
+        ports:
+          - '27018:27017'
