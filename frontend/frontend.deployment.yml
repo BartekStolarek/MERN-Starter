@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mern-frontend
+  labels:
+    app: mern-frontend
+spec:
+  selector:
+    matchLabels:
+      app: mern-frontend
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: mern-frontend
+    spec:
+      containers:
+      - name: mern-frontend
+        image: mern-frontend:1.0
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 3000

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mern-frontend
+spec:
+  type: LoadBalancer
+  selector:
+    app: mern-frontend
+  ports:
+  - port: 3000
+    targetPort: 3000
