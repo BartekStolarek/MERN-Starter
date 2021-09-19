@@ -1,20 +1,17 @@
 # Get node image
 FROM node:latest
 
-# Create new folder for frontend app files
-RUN mkdir -p /usr/src/frontend-app
-
-# Set working directory in the container
-WORKDIR /usr/src/frontend-app
+# Create frontend app folder
+WORKDIR /usr/src/mern-frontend-app
 
 # Copy package.json file from project source folder to container folder
-COPY package.json /usr/src/frontend-app
+COPY package*.json ./
 
 # Install dependencies inside of the container
 RUN npm install
 
 # Copy source code of the app into the container folder
-COPY . /usr/src/frontend-app
+COPY . .
 
 # Expose network port number
 EXPOSE 3000
