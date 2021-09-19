@@ -61,7 +61,6 @@ class Login extends Component {
       });
 
       const authToken =  response.headers['auth-token'];
-      console.log(response);
 
       if (response.status === 200 && authToken) {
         this.setState({
