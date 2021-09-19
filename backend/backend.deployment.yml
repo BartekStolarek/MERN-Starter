@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mern-backend
+  labels:
+    app: mern-backend
+spec:
+  selector:
+    matchLabels:
+      app: mern-backend
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: mern-backend
+    spec:
+      containers:
+      - name: mern-backend
+        image: mern-backend:1.0
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 3002

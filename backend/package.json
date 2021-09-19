@@ -1,8 +1,7 @@
 {
-  "name": "mern-starter",
+  "name": "backend-app",
   "version": "1.0.0",
   "description": "MERN Stack Starter App (Mongo, Express, React, Node)",
-  "main": "app.js",
   "scripts": {
     "build": "tsc",
     "start": "npm run build && ts-node-dev src/server.ts",
