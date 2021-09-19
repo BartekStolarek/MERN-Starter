@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mern-mongo
+spec:
+  selector:
+    matchLabels:
+      app: mern-mongo
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mern-mongo
+    spec:
+      containers:
+      - name: mongo
+        image: mongo:4.2
+        args:
+          - --bind_ip
+          - 0.0.0.0
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        ports:
+        - containerPort: 27017
