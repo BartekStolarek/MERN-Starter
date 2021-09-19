@@ -1,5 +1,5 @@
-# MERN-UI
-UI for MERN Stack Starter App (Mongo, Express, React, Node)
+# MERN-Frontend
+Frontend for MERN Stack Starter App (Mongo, Express, React, Node)
 
 ## Want to run the whole project (Backend + Frontend + MongoDB)?
 Navigate to an upper folder or follow [this link](../README).
