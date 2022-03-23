@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mern-backend
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: mern-backend 
+  template:
+    metadata:
+      labels:
+        app: mern-backend
+    spec:
+      containers:
+      - image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        imagePullPolicy: Never
+        name: mern-backend
+        ports:
+        - name: http
+          containerPort: 3002
+        env:
+        - name: MONGODB_URI
+          valueFrom:
+            secretKeyRef:
+              name: mern-backend-secret
+              key: mongodb-uri
