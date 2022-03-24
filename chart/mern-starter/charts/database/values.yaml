@@ -4,7 +4,7 @@ secret:
   mongodb_username: ""
   mongodb_password: ""
 service:
-  type: NodePort
-  port: 80
+  type: LoadBalancer
+  port: 27017
 volume:
   storage: 100Mi

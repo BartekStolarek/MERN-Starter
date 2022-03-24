@@ -7,11 +7,11 @@ secret:
     dbconn: "guestbook?authSource=admin"
 image:
   repository: mern-backend
-  tag: "1.0"
+  tag: "1.1"
 replicaCount: 1
 service:
-  type: ClusterIP
+  type: LoadBalancer
   port: 3002
 ingress:
-  enabled: true
+  enabled: false
   host: backend.minikube.local
