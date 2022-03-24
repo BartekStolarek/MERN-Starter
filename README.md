@@ -56,8 +56,8 @@ kubectl delete services/backend-app
 2. Make sure you have [Docker](https://www.docker.com/) installed on your machine alongside with [Kubernetes](https://kubernetes.io/) and [minikube](https://minikube.sigs.k8s.io/docs/). 
 > **Note:** This configuration was prepared on Windows 10 Machine with `kubectl` version 1.22.3 and [minikube](https://minikube.sigs.k8s.io/docs/) version 1.24.0. Configuration for Linux or macOS environments might be different.
 
-> Tip: If you are on a Windows Machine, you can download Docker Desktop Tool which allows you to install Kubernetes as well.
-3. Open the repository in the file explorer, go to `/backend`, copy `.env.template` file and paste it in the same directory with the `.env` name. Do the same for the `/frontend` folder.
+> **Tip:** If you are on a Windows Machine, you can download Docker Desktop Tool which allows you to install Kubernetes as well.
+3. Open the repository in the file explorer, go to `/backend`, copy `.env.template` file and paste it in the same directory with the `.env` name. Do the same for the frontend folder.
 4. Open Terminal, and navigate to this folder.
 5. Build Docker images for the Backend and Frontend:
 ```
@@ -66,14 +66,38 @@ docker build . -t mern-backend:1.0
 cd ../frontend
 docker build . -t mern-frontend:1.0
 ```
-<!-- 6. Run minikube:
+
+6. Navigate to `chart/mern-starter/charts` folder and deploy applications using Helm
 ```
-minikube start
+helm install mern-database .\database\ --values .\database\values.yaml
+
+helm install mern-frontend .\frontend\ --values .\frontend\values.yaml
+
+helm install mern-backend .\backend\ --values .\backend\values.yaml
 ```
-and enable Ingress addon:
+
+> If you would like to make some changes to the deployment and update it, run then:
+`
+helm upgrade [release] [chart-location] [values]
+`
+For example (for backend):
+`
+helm install mern-backend .\backend\ --values .\backend\values.yaml
+`
+7. Verify if deployments are running one of the following commands:
 ```
-minikube addons enable ingress
-``` -->
+helm list
+kubectl get all
+```
+And open your browser at: https://localhost:3000
+Frontend application should load there, whereas backend application should be available at https://localhost:3002 (if you copied and did not modify `.env` file for the Frontend application, it should automatically point to the backend).
+
+8. When you would like to finish working with the project on your local machine, do not forget to delete deployments, so your machine will not use resources! Do it by calling the following commands:
+```
+helm uninstall mern-backend
+helm uninstall mern-database
+helm uninstall mern-frontend
+```
 
 
 ## Run the project using docker-compose
