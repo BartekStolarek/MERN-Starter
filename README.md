@@ -53,7 +53,7 @@ kubectl delete services/backend-app
 
 ## Run the project using Helm
 1. Clone the repository.
-2. Make sure you have [Docker](https://www.docker.com/) installed on your machine alongside with [Kubernetes](https://kubernetes.io/) and [minikube](https://minikube.sigs.k8s.io/docs/). 
+2. Make sure you have [Docker](https://www.docker.com/) installed on your machine alongside with [Kubernetes](https://kubernetes.io/) and optionally [minikube](https://minikube.sigs.k8s.io/docs/). 
 > **Note:** This configuration was prepared on Windows 10 Machine with `kubectl` version 1.22.3 and [minikube](https://minikube.sigs.k8s.io/docs/) version 1.24.0. Configuration for Linux or macOS environments might be different.
 
 > **Tip:** If you are on a Windows Machine, you can download Docker Desktop Tool which allows you to install Kubernetes as well.
@@ -76,7 +76,7 @@ helm install mern-frontend .\frontend\ --values .\frontend\values.yaml
 helm install mern-backend .\backend\ --values .\backend\values.yaml
 ```
 
-> If you would like to make some changes to the deployment and update it, run then:
+> **Tip:** If you would like to make some changes to the deployment and update it, run then:
 `
 helm upgrade [release] [chart-location] [values]
 `
