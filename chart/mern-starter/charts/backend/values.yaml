@@ -1,13 +1,15 @@
 secret:
-  mongodb_uri:
-    username: your_db_username
-    password: your_db_password
-    dbchart: database
-    dbport: 27017
-    dbconn: "guestbook?authSource=admin"
+  # If you want to provide MongoDB credentials here instead of .env file, uncomment this section
+  # If doing so - do not forget to change config source file in the backend app 
+  # mongodb_uri:
+  #   username: your_db_username
+  #   password: your_db_password
+  #   dbchart: database
+  #   dbport: 27017
+  #   dbconn: "mern-mongo"
 image:
   repository: mern-backend
-  tag: "1.1"
+  tag: "1.0"
 replicaCount: 1
 service:
   type: LoadBalancer
