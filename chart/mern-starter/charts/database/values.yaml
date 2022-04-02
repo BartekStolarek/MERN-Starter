@@ -1,0 +1,10 @@
+secret:
+#  mongodb_username: "YWRtaW4="
+#  mongodb_password: "cGFzc3dvcmQ="
+  mongodb_username: ""
+  mongodb_password: ""
+service:
+  type: LoadBalancer
+  port: 27017
+volume:
+  storage: 100Mi

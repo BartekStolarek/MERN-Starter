@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mern-mongo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mern-mongo
+  template:
+    metadata:
+      labels:
+        app: mern-mongo
+    spec:
+      containers:
+        - image: mongo
+          env:
+          - name: MONGO_INITDB_DATABASE
+            value: mern-mongo
+          - name: MONGO_INITDB_ROOT_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: mern-mongo-secret
+                key: mongodb-username
+          - name: MONGO_INITDB_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mern-mongo-secret
+                key: mongodb-password
+          name: mern-mongo
+          ports:
+            - name: mongodb
+              containerPort: 27017
+          volumeMounts:
+            - name: mern-mongo-volume
+              mountPath: /data/db
+      volumes:
+        - name: mern-mongo-volume
+          persistentVolumeClaim:
+            claimName: mern-mongo-pvc

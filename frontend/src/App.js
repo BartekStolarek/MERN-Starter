@@ -10,7 +10,6 @@ import Signup from './components/Signup/Signup';
 import Navbar from './components/Navbar/Navbar';
 import Dashboard from './components/Dashboard/Dashboard';
 import Profile from './components/Profile/Profile';
-import './App.css';
 
 const isAuthenticated = () => {
   return localStorage.getItem('auth_token');

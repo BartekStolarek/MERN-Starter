@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mern-frontend
+spec:
+  replicas: {{ .Values.replicaCount }} 
+  selector:
+    matchLabels:
+      app: mern-frontend 
+  template:
+    metadata: 
+      labels:
+        app: mern-frontend
+    spec:
+      containers:
+      - image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        imagePullPolicy: Never
+        name: mern-frontend
+        ports:
+        - name: http
+          containerPort: 3000
+        env:
+        - name: BACKEND_URI
+          valueFrom:
+            configMapKeyRef:
+              name: {{ .Release.Name }}-{{ .Chart.Name }}-config
+              key: backend-uri
