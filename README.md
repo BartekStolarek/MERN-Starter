@@ -3,12 +3,31 @@ MERN Stack Starter App (Mongo, Express, React, Node)
 
 ## What is this repository?
 This is a starer application for the simple, yet fully working application with:
-* Authentication (Login and Signup)
-* Database operations (adding new user, getting user's profile information)
-* Frontend and Backend working together, as a separate applications
-* Basic tests for Backend endpoints and Frontend components
-* Docker deployment using docker-compose file
-* Kubernetes deployment using yaml files
+* Authentication (Login and Signup).
+* Database operations (adding new user, getting user's profile information).
+* Frontend and Backend working together, as a separate applications.
+* Ability to dockerize app, and deploy with Kubernetes, Helm or docker-compose.
+* Basic tests for Backend endpoints and Frontend components.
+
+## Technologies used in project
+### Frontend:
+* React
+* React Testing Library
+* ui-kit
+
+### Backend:
+* Node.js
+* TypeScript
+* Jest
+
+### Database:
+* MongoDB
+
+### Deployments:
+* Docker
+* Kubernetes
+* Helm
+* docker-compose
 
 ## Run the project using Kubernetes
 1. Clone the repository.
